@@ -10,6 +10,12 @@ packages.each do |name|
   end.run_action(:install)
 end
 
+if node['platform_family'] == 'rhel'
+  service 'libvirtd' do
+    action [ :enable, :start ]
+  end
+end
+
 chef_gem 'ruby-libvirt' do
   action :install
 end
