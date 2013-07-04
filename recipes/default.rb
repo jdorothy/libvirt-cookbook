@@ -1,4 +1,10 @@
-%w(libvirt-bin libvirt-dev).each do |name|
+case node['platform_family']
+when "rhel"
+  packages = %w( libvirt libvirt-devel )
+when "debian"
+  packages = %w( libvirt-bin libvirt-dev )
+end
+packages.each do |name|
   package name do
     action :nothing
   end.run_action(:install)
