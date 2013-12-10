@@ -1,5 +1,3 @@
-require 'uuidtools'
-
 def load_current_resource
   @current_resource = Chef::Resource::LibvirtDomain.new(new_resource.name)
   @libvirt = ::Libvirt.open(new_resource.uri)
@@ -9,6 +7,8 @@ end
 
 action :define do
   unless domain_defined?
+
+    require 'uuidtools'
     memory_in_bytes = to_bytes(new_resource.memory)
     libvirt_arch    = to_arch(new_resource.arch)
 
