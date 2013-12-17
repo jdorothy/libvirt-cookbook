@@ -1,6 +1,6 @@
 <disk type='<%= @type %>' device='disk'>
-  <driver name='qemu'/>
-  <source dev='<%= @source %>'/>
+  <driver name='qemu' type='<%= @driver %>'/>
+  <source <%= @source_device %>= '<%= @source %>'/>
   <target dev='<%= @target %>' bus='<%= @bus %>'/>
 </disk>
 
